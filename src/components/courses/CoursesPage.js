@@ -22,11 +22,8 @@ class CoursesPage extends React.Component {
     //this.props.createCourse(this.state.course);
   };
 
-  handleDeleteCourse = value => {
-    const course = { ...this.state.course };
-    course.title = value;
-    this.setState({ course });
-    this.props.actions.deleteCourse(this.state.course);
+  handleDeleteCourse = course => {
+    this.props.actions.deleteCourse(course);
   };
 
   render() {
@@ -45,7 +42,7 @@ class CoursesPage extends React.Component {
         {this.props.courses.map(course => (
           <div
             key={course.title}
-            onClick={() => this.handleDeleteCourse(course.title)}
+            onClick={() => this.handleDeleteCourse(course)}
           >
             {course.title}
           </div>
