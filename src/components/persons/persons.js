@@ -10,8 +10,49 @@ class Persons extends Component {
       email: ""
     }
   };
+
+  handleChange = event => {
+    const person = { ...this.state.person };
+    person[event.currentTarget.name] = event.currentTarget.value;
+    this.setState({ person });
+  };
+
+  handleOnSubmit = event => {
+    event.preventDefault();
+    this.props.actions.addPerson(this.state.person);
+  };
+
   render() {
-    return <React.Fragment></React.Fragment>;
+    return (
+      <React.Fragment>
+        <div>
+          <form onSubmit={this.handleOnSubmit}>
+            <label>Name: </label>
+            <br />
+            <input type="text" name="name" onChange={this.handleChange}></input>
+            <br />
+            <br></br>
+            <label>Email: </label>
+            <br />
+            <input
+              type="text"
+              name="email"
+              onChange={this.handleChange}
+            ></input>
+            <br />
+            <br />
+            <button type="submit">Grabar</button>
+            <br />
+            <div>
+              {this.props.persons.map(x => (
+                <p key={x.name}>{x.name}</p>
+              ))}
+            </div>
+          </form>
+        </div>
+        <br />
+      </React.Fragment>
+    );
   }
 }
 
@@ -23,8 +64,9 @@ function mapDispatchToProps(dispatch) {
 }
 
 function mapStateToProps(state) {
+  console.log(state);
   return {
-    persons: state.person
+    persons: state.persons
   };
 }
 
