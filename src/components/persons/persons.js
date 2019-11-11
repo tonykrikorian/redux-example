@@ -22,6 +22,10 @@ class Persons extends Component {
     this.props.actions.addPerson(this.state.person);
   };
 
+  handleDeleteCourse = course => {
+    this.props.actions.deletePerson(course);
+  };
+
   render() {
     return (
       <React.Fragment>
@@ -41,12 +45,41 @@ class Persons extends Component {
             ></input>
             <br />
             <br />
-            <button type="submit">Grabar</button>
+            <button className="btn btn-success" type="submit">
+              Grabar
+            </button>
+            <br />
             <br />
             <div>
-              {this.props.persons.map(x => (
-                <p key={x.name}>{x.name}</p>
-              ))}
+              <table
+                border="1"
+                className="table table-bordered table-hovergit "
+              >
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Acción</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {this.props.persons.map(x => (
+                    <tr key={x.email}>
+                      <td>{x.name}</td>
+                      <td>{x.email}</td>
+                      <td>
+                        <button
+                          type="button"
+                          onClick={() => this.handleDeleteCourse(x)}
+                          className="btn btn-danger"
+                        >
+                          Eliminar
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
           </form>
         </div>
