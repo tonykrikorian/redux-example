@@ -31,14 +31,20 @@ class Persons extends Component {
       <React.Fragment>
         <div>
           <form onSubmit={this.handleOnSubmit}>
-            <label>Name: </label>
-            <br />
-            <input type="text" name="name" onChange={this.handleChange}></input>
-            <br />
-            <br></br>
-            <label>Email: </label>
+            <span className="label label-default">Name: </span>
             <br />
             <input
+              className="form-control"
+              type="text"
+              name="name"
+              onChange={this.handleChange}
+            ></input>
+            <br />
+            <br></br>
+            <label className="label label-default">Email: </label>
+            <br />
+            <input
+              className="form-control"
               type="text"
               name="email"
               onChange={this.handleChange}
